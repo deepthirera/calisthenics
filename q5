@@ -1,0 +1,23 @@
+module MyAttrAccessor
+def attr_accessor_with_history name
+class_eval %{
+def #{name}=(value)
+@#{name}_history ||= [nil]
+@#{name}_history << value
+end
+def #{name}_history 
+@#{name}_history
+end
+}
+end
+end
+
+class Foo
+extend MyAttrAccessor 
+attr_accessor_with_history :bar
+end
+f = Foo.new
+f.bar = "deepthi"
+f.bar_history
+f.bar="srk"
+f.bar_history
