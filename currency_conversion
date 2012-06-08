@@ -1,0 +1,16 @@
+module Now 
+def dollar
+self
+end
+def in to_type
+h = {'yen' => 0.013, 'euro' => 1.292, 'rupee' => 0.019}
+h.has_key?(to_type)
+self * h[to_type]
+end
+end
+class Fixnum
+include Now
+end
+
+1.dollar.in(rupees)
+
